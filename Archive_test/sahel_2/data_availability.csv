@@ -1,0 +1,6 @@
+Country,DHScode,FIPScode,ISOcode,SurveyYear,SurveyType,EMEMPLMDKM,EMEMPLMEMC,EMEMPLMENC,EMEMPLMN12,EMEMPLMNUM,EMEMPLMTOT,EMEMPLMUNW,EMEMPLWDKM,EMEMPLWEMC,EMEMPLWENC,EMEMPLWN12,EMEMPLWNUM,EMEMPLWTOT,EMEMPLWUNW,EMOCCPMCLR,EMOCCPMMNS,EMOCCPMPRO,EMOCCPMSAL,EMOCCPWAGR,EMOCCPWCLR,EMOCCPWDKM,EMOCCPWDOM,EMOCCPWMNS,EMOCCPWMNU,EMOCCPWNUM,EMOCCPWOTH,EMOCCPWPRO,EMOCCPWSAL,EMOCCPWTOT,EMOCCPWUNW
+Burkina Faso,BF,UV,,2010,DHS,-,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+Mali,ML,ML,,2006,DHS,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,-,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+Mauritania,MR,MR,,2000,DHS,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,-,Yes,Yes,Yes,Yes
+Niger,NI,NG,,2006,DHS,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes
+Chad,TD,CD,,2004,DHS,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,-,Yes,Yes,Yes,-,Yes,Yes,Yes,Yes

@@ -1,0 +1,37 @@
+BF,Boucle du Mouhoun,EMEMPLMDKM,Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months,no data
+BF,Cascades,EMEMPLMDKM,Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months,no data
+BF,Centre,EMEMPLMDKM,Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months,no data
+BF,Centre-Est,EMEMPLMDKM,Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months,no data
+BF,Centre-Nord,EMEMPLMDKM,Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months,no data
+BF,Centre-Ouest,EMEMPLMDKM,Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months,no data
+BF,Centre-Sud,EMEMPLMDKM,Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months,no data
+BF,Est,EMEMPLMDKM,Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months,no data
+BF,Hauts-Bassins,EMEMPLMDKM,Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months,no data
+BF,Nord,EMEMPLMDKM,Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months,no data
+BF,Plateau Central,EMEMPLMDKM,Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months,no data
+BF,Sahel,EMEMPLMDKM,Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months,no data
+BF,Sud-Ouest,EMEMPLMDKM,Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months,no data
+ML,Kayes,EMOCCPWAGR,Percentage of women employed in the 12 months before the survey whose occupation is in agriculture,no data
+ML,Koulikoro,EMOCCPWAGR,Percentage of women employed in the 12 months before the survey whose occupation is in agriculture,no data
+ML,Sikasso,EMOCCPWAGR,Percentage of women employed in the 12 months before the survey whose occupation is in agriculture,no data
+ML,Segou,EMOCCPWAGR,Percentage of women employed in the 12 months before the survey whose occupation is in agriculture,no data
+ML,Mopti,EMOCCPWAGR,Percentage of women employed in the 12 months before the survey whose occupation is in agriculture,no data
+ML,Tombouctou,EMOCCPWAGR,Percentage of women employed in the 12 months before the survey whose occupation is in agriculture,no data
+ML,Gao,EMOCCPWAGR,Percentage of women employed in the 12 months before the survey whose occupation is in agriculture,no data
+ML,Kidal,EMOCCPWAGR,Percentage of women employed in the 12 months before the survey whose occupation is in agriculture,no data
+ML,Bamako,EMOCCPWAGR,Percentage of women employed in the 12 months before the survey whose occupation is in agriculture,no data
+ML,Kidal,EMOCCPWCLR,Percentage of women employed in the 12 months before the survey whose occupation is clerical,no data
+ML,Kidal,EMOCCPWDKM,Percentage of women employed in the 12 months before the survey with 'don't know' or missing information on occupation,no data
+ML,Kidal,EMOCCPWDOM,Percentage of women employed in the 12 months before the survey whose occupation is household & domestic,no data
+ML,Kidal,EMOCCPWMNS,Percentage of women employed in the 12 months before the survey whose occupation is skilled manual,no data
+ML,Kidal,EMOCCPWMNU,Percentage of women employed in the 12 months before the survey whose occupation is unskilled manual,no data
+ML,Kidal,EMOCCPWNUM,Number of women employed in the 12 months before the survey,no data
+ML,Kidal,EMOCCPWOTH,Percentage of women employed in the 12 months before the survey whose occupation is other,no data
+MR,Nouakchott,EMOCCPWOTH,Percentage of women employed in the 12 months before the survey whose occupation is other,no data
+MR,Zone Centre,EMOCCPWOTH,Percentage of women employed in the 12 months before the survey whose occupation is other,no data
+MR,Zone Fleuve,EMOCCPWOTH,Percentage of women employed in the 12 months before the survey whose occupation is other,no data
+MR,Zone Nord,EMOCCPWOTH,Percentage of women employed in the 12 months before the survey whose occupation is other,no data
+MR,Zone Sud,EMOCCPWOTH,Percentage of women employed in the 12 months before the survey whose occupation is other,no data
+ML,Kidal,EMOCCPWPRO,Percentage of women employed in the 12 months before the survey whose occupation is professional, technical, managerial,no data
+ML,Kidal,EMOCCPWSAL,Percentage of women employed in the 12 months before the survey whose occupation is sales, services,no data
+ML,Kidal,EMOCCPWTOT,Percentage of women employed in the 12 months before the survey: Total,no data

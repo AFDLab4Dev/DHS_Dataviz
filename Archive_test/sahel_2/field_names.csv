@@ -1,0 +1,30 @@
+SDRID,Definition,Data Restriction,DHSID,Alias
+EMEMPLMDKM,Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months,,EM_EMPL_M_DKM,Men with don't know or missing information on whether they worked in the last 12 months
+EMEMPLMEMC,Percentage of men who worked in the 12 months preceding the survey and are working currently,,EM_EMPL_M_EMC,Men who worked in the last 12 months and are currently
+EMEMPLMENC,"Percentage of men who worked in the 12 months preceding the survey, but are not working currently",,EM_EMPL_M_ENC,"Men who worked in the last 12 months, but not currently"
+EMEMPLMN12,Percentage of men who did no work in the 12 months preceding the survey,,EM_EMPL_M_N12,Men who did no work in the last 12 months
+EMEMPLMNUM,"Number of men aged 15-49(54,59)",,EM_EMPL_M_NUM,Number of men
+EMEMPLMTOT,Percentage of men: Total,,EM_EMPL_M_TOT,Men : Total
+EMEMPLMUNW,"Number of men aged 15-49(54,59) (unweighted)",,EM_EMPL_M_UNW,Number of men (unweighted)
+EMEMPLWDKM,Percentage of women with 'don't know' or missing information on whether they worked in the last 12 months,,EM_EMPL_W_DKM,Women with don't know or missing information on whether they worked in the last 12 months
+EMEMPLWEMC,Percentage of women who worked in the 12 months preceding the survey and are working currently,,EM_EMPL_W_EMC,Women who worked in the last 12 months and are currently
+EMEMPLWENC,"Percentage of women who worked in the 12 months preceding the survey, but are not working currently",,EM_EMPL_W_ENC,"Women who worked in the last 12 months, but not currently"
+EMEMPLWN12,Percentage of women who did no work in the 12 months preceding the survey,,EM_EMPL_W_N12,Women who did no work in the last 12 months
+EMEMPLWNUM,Number of women aged 15-49,,EM_EMPL_W_NUM,Number of women
+EMEMPLWTOT,Percentage of women: Total,,EM_EMPL_W_TOT,Women : Total
+EMEMPLWUNW,Number of women aged 15-49 (unweighted),,EM_EMPL_W_UNW,Number of women (unweighted)
+EMOCCPMCLR,Percentage of men employed in the 12 months before the survey whose occupation is clerical,,EM_OCCP_M_CLR,Men's occupation: Clerical
+EMOCCPMPRO,"Percentage of men employed in the 12 months before the survey whose occupation is professional, technical, managerial",,EM_OCCP_M_PRO,"Men's occupation: Professional, technical, managerial"
+EMOCCPMSAL,"Percentage of men employed in the 12 months before the survey whose occupation is sales, services",,EM_OCCP_M_SAL,"Men's occupation: Sales, services"
+EMOCCPWAGR,Percentage of women employed in the 12 months before the survey whose occupation is in agriculture,,EM_OCCP_W_AGR,Women's occupation: Agriculture
+EMOCCPWCLR,Percentage of women employed in the 12 months before the survey whose occupation is clerical,,EM_OCCP_W_CLR,Women's occupation: Clerical
+EMOCCPWDKM,Percentage of women employed in the 12 months before the survey with 'don't know' or missing information on occupation,,EM_OCCP_W_DKM,Women with don't know or missing information on occupation
+EMOCCPWDOM,Percentage of women employed in the 12 months before the survey whose occupation is household & domestic,,EM_OCCP_W_DOM,Women's occupation: Household & domestic
+EMOCCPWMNS,Percentage of women employed in the 12 months before the survey whose occupation is skilled manual,,EM_OCCP_W_MNS,Women's occupation: Skilled manual
+EMOCCPWMNU,Percentage of women employed in the 12 months before the survey whose occupation is unskilled manual,,EM_OCCP_W_MNU,Women's occupation: Unskilled manual
+EMOCCPWNUM,Number of women employed in the 12 months before the survey,,EM_OCCP_W_NUM,Number of women employed in the last 12 months
+EMOCCPWOTH,Percentage of women employed in the 12 months before the survey whose occupation is other,,EM_OCCP_W_OTH,Women's occupation: Other
+EMOCCPWPRO,"Percentage of women employed in the 12 months before the survey whose occupation is professional, technical, managerial",,EM_OCCP_W_PRO,"Women's occupation: Professional, technical, managerial"
+EMOCCPWSAL,"Percentage of women employed in the 12 months before the survey whose occupation is sales, services",,EM_OCCP_W_SAL,"Women's occupation: Sales, services"
+EMOCCPWTOT,Percentage of women employed in the 12 months before the survey: Total,,EM_OCCP_W_TOT,Women's occupation: Total
+EMOCCPWUNW,Number of women employed in the 12 months before the survey (unweighted),,EM_OCCP_W_UNW,Number of women employed in the last 12 months (unweighted)

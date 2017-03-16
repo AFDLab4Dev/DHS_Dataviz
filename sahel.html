@@ -1,0 +1,2124 @@
+
+                  <!DOCTYPE html>
+            <html><head>
+                    <title>Leaflet Layers Control Example</title>
+                    <meta charset="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+                    <style>
+                        #map {
+                            width: 1080px;
+                            height: 960px;
+                        }
+
+                        .info {
+                            padding: 6px 8px;
+                            font: 14px/16px Arial, Helvetica, sans-serif;
+                            background: white;
+                            background: rgba(255,255,255,0.8);
+                            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+                            border-radius: 5px;
+                        }
+                        .info h4 {
+                            margin: 0 0 5px;
+                            color: #777;
+                        }
+
+                        .legend {
+                            text-align: left;
+                            line-height: 18px;
+                            color: #555;
+                        }
+                        .legend i {
+                            width: 18px;
+                            height: 18px;
+                            float: left;
+                            margin-right: 8px;
+                            opacity: 0.7;
+                        }
+                    </style>
+                </head>
+                
+                <body>
+                    <div id="map"></div>
+
+                    <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+
+                    <script type="text/javascript" src="sahel.js"></script>
+                    <script type="text/javascript">
+
+                        var map = L.map('map').setView([ 13.51, 2.12], 5.0);
+
+                        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+                            {maxZoom: 18,
+                            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                                'Dataviz from <a href="https://twitter.com/Thomas_Roca">@Thomas_Roca </a> with Python',
+                            id: 'mapbox.light'
+                        }).addTo(map);
+                        
+                                    var info = L.control();
+
+            info.onAdd = function (map) {
+                this._div = L.DomUtil.create('div', 'info');
+                this.update();
+                return this._div;
+            };
+
+            info.update = function (props) {
+                if(props){
+                if (props[indicator] === 9999) {
+                var t = 'Missing Value';
+                } else {
+                var t = props[indicator];
+                }
+                if(props.DHSREGEN){
+                this._div.innerHTML = (props ?
+               '<h3>'+props.CNTRYNAMEE+'</h3>' +
+                '<span style="color:#336DA9"><b>'+doc+': '+
+                '<span style="color:black">' + t + '</b><br>'+
+                'Survey Region: <b>' + props.DHSREGEN + '</b><br>' +
+                'Survey Year: <b> '+props.SVYYEAR + '</b><br>' +
+                '</b> <i>Source: <b>DHS program</i></b></a>'
+                : '<b>Ceci est un test</b>');
+                } else {
+                     this._div.innerHTML = (props ?
+               '<h3>'+props.NAME+'</h3>' +
+                '<span style="color:#336DA9"><b>'+doc+': '+
+                '<span style="color:black">' + t+ '</b><br>' +
+                'Survey Region: <b>' + props.NAME + '</b><br>' +
+                'Survey Year: <b> '+props.Survey + '</b><br>' +
+                '</b> <i>Source: <b>DHS program</i></b></a>'
+                : '<b>Ceci est un test</b>');
+                
+                
+                }
+                }
+            };
+        
+
+            info.addTo(map);
+                    
+
+                       map.attributionControl.addAttribution('Data &copy; <a href="http://spatialdata.dhsprogram.com/" target="_blank">DHS Spatial Data Repository</a>');
+                       
+                var CMECMRCIMR = L.geoJson(statesData, {style: styleCMECMRCIMR, onEachFeature: onEachFeatureCMECMRCIMR}).addTo(map);
+            var CMECMRCU5M = L.geoJson(statesData, {style: styleCMECMRCU5M, onEachFeature: onEachFeatureCMECMRCU5M});
+        
+            var EMEMPLMDKM = L.geoJson(statesData, {style: styleEMEMPLMDKM, onEachFeature: onEachFeatureEMEMPLMDKM});
+        
+            var EMEMPLMEMC = L.geoJson(statesData, {style: styleEMEMPLMEMC, onEachFeature: onEachFeatureEMEMPLMEMC});
+        
+            var EMEMPLMENC = L.geoJson(statesData, {style: styleEMEMPLMENC, onEachFeature: onEachFeatureEMEMPLMENC});
+        
+            var EMEMPLMN12 = L.geoJson(statesData, {style: styleEMEMPLMN12, onEachFeature: onEachFeatureEMEMPLMN12});
+        
+            var EMEMPLMNUM = L.geoJson(statesData, {style: styleEMEMPLMNUM, onEachFeature: onEachFeatureEMEMPLMNUM});
+        
+            var EMEMPLMTOT = L.geoJson(statesData, {style: styleEMEMPLMTOT, onEachFeature: onEachFeatureEMEMPLMTOT});
+        
+            var EMEMPLMUNW = L.geoJson(statesData, {style: styleEMEMPLMUNW, onEachFeature: onEachFeatureEMEMPLMUNW});
+        
+            var EMEMPLWDKM = L.geoJson(statesData, {style: styleEMEMPLWDKM, onEachFeature: onEachFeatureEMEMPLWDKM});
+        
+            var EMEMPLWEMC = L.geoJson(statesData, {style: styleEMEMPLWEMC, onEachFeature: onEachFeatureEMEMPLWEMC});
+        
+            var EMEMPLWENC = L.geoJson(statesData, {style: styleEMEMPLWENC, onEachFeature: onEachFeatureEMEMPLWENC});
+        
+            var EMEMPLWN12 = L.geoJson(statesData, {style: styleEMEMPLWN12, onEachFeature: onEachFeatureEMEMPLWN12});
+        
+            var EMEMPLWNUM = L.geoJson(statesData, {style: styleEMEMPLWNUM, onEachFeature: onEachFeatureEMEMPLWNUM});
+        
+            var EMEMPLWTOT = L.geoJson(statesData, {style: styleEMEMPLWTOT, onEachFeature: onEachFeatureEMEMPLWTOT});
+        
+            var EMEMPLWUNW = L.geoJson(statesData, {style: styleEMEMPLWUNW, onEachFeature: onEachFeatureEMEMPLWUNW});
+        
+            var EMOCCPWCLR = L.geoJson(statesData, {style: styleEMOCCPWCLR, onEachFeature: onEachFeatureEMOCCPWCLR});
+        
+            var EMOCCPWDOM = L.geoJson(statesData, {style: styleEMOCCPWDOM, onEachFeature: onEachFeatureEMOCCPWDOM});
+        
+            var EMOCCPWMNS = L.geoJson(statesData, {style: styleEMOCCPWMNS, onEachFeature: onEachFeatureEMOCCPWMNS});
+        
+            var EMOCCPWMNU = L.geoJson(statesData, {style: styleEMOCCPWMNU, onEachFeature: onEachFeatureEMOCCPWMNU});
+        
+            var EMOCCPWPRO = L.geoJson(statesData, {style: styleEMOCCPWPRO, onEachFeature: onEachFeatureEMOCCPWPRO});
+        
+            var EMOCCPWSAL = L.geoJson(statesData, {style: styleEMOCCPWSAL, onEachFeature: onEachFeatureEMOCCPWSAL});
+        
+            var FEFRTRWTFR = L.geoJson(statesData, {style: styleFEFRTRWTFR, onEachFeature: onEachFeatureFEFRTRWTFR});
+        
+            var FPCUSMWANY = L.geoJson(statesData, {style: styleFPCUSMWANY, onEachFeature: onEachFeatureFPCUSMWANY});
+        
+            var FPCUSMWMOD = L.geoJson(statesData, {style: styleFPCUSMWMOD, onEachFeature: onEachFeatureFPCUSMWMOD});
+        
+            var FPNADMWPDM = L.geoJson(statesData, {style: styleFPNADMWPDM, onEachFeature: onEachFeatureFPNADMWPDM});
+        
+            var FPNADMWUNT = L.geoJson(statesData, {style: styleFPNADMWUNT, onEachFeature: onEachFeatureFPNADMWUNT});
+        
+            var MAAAFMWM2B = L.geoJson(statesData, {style: styleMAAAFMWM2B, onEachFeature: onEachFeatureMAAAFMWM2B});
+        
+            var SXAAFSWM2B = L.geoJson(statesData, {style: styleSXAAFSWM2B, onEachFeature: onEachFeatureSXAAFSWM2B});
+        
+
+                    function resetHighlightCMECMRCIMR(e) {
+            
+                CMECMRCIMR.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureCMECMRCIMR(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightCMECMRCIMR,
+                    click: zoomToFeature
+                });
+            }
+                function getColorCMECMRCIMR(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 105 ? '#1a334c' :
+                                   d > 90  ? '#084594' :
+                                   d > 75  ? '#2171b5' :
+                                   d > 60  ? '#4292c6' :
+                                   d > 45   ? '#6baed6' :
+                                   d > 30   ? '#9ecae1' :
+                                   d > 15   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleCMECMRCIMR(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorCMECMRCIMR(feature.properties.CMECMRCIMR)
+                            };
+                        }
+                        
+                        
+                 var legendCMECMRCIMR = L.control({position: 'bottomright'});
+
+                        legendCMECMRCIMR.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [15,30,45,60,75,90,105],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorCMECMRCIMR(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightCMECMRCU5M(e) {
+            
+                CMECMRCU5M.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureCMECMRCU5M(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightCMECMRCU5M,
+                    click: zoomToFeature
+                });
+            }
+                function getColorCMECMRCU5M(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 231 ? '#1a334c' :
+                                   d > 198  ? '#084594' :
+                                   d > 165  ? '#2171b5' :
+                                   d > 132  ? '#4292c6' :
+                                   d > 99   ? '#6baed6' :
+                                   d > 66   ? '#9ecae1' :
+                                   d > 33   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleCMECMRCU5M(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorCMECMRCU5M(feature.properties.CMECMRCU5M)
+                            };
+                        }
+                        
+                        
+                 var legendCMECMRCU5M = L.control({position: 'bottomright'});
+
+                        legendCMECMRCU5M.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [33,66,99,132,165,198,231],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorCMECMRCU5M(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMEMPLMDKM(e) {
+            
+                EMEMPLMDKM.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMEMPLMDKM(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMEMPLMDKM,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMEMPLMDKM(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 0 ? '#1a334c' :
+                                   d > 0  ? '#084594' :
+                                   d > 0  ? '#2171b5' :
+                                   d > 0  ? '#4292c6' :
+                                   d > 0   ? '#6baed6' :
+                                   d > 0   ? '#9ecae1' :
+                                   d > 0   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMEMPLMDKM(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMEMPLMDKM(feature.properties.EMEMPLMDKM)
+                            };
+                        }
+                        
+                        
+                 var legendEMEMPLMDKM = L.control({position: 'bottomright'});
+
+                        legendEMEMPLMDKM.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [0,0,0,0,0,0,0],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMEMPLMDKM(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMEMPLMEMC(e) {
+            
+                EMEMPLMEMC.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMEMPLMEMC(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMEMPLMEMC,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMEMPLMEMC(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 56 ? '#1a334c' :
+                                   d > 48  ? '#084594' :
+                                   d > 40  ? '#2171b5' :
+                                   d > 32  ? '#4292c6' :
+                                   d > 24   ? '#6baed6' :
+                                   d > 16   ? '#9ecae1' :
+                                   d > 8   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMEMPLMEMC(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMEMPLMEMC(feature.properties.EMEMPLMEMC)
+                            };
+                        }
+                        
+                        
+                 var legendEMEMPLMEMC = L.control({position: 'bottomright'});
+
+                        legendEMEMPLMEMC.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [8,16,24,32,40,48,56],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMEMPLMEMC(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMEMPLMENC(e) {
+            
+                EMEMPLMENC.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMEMPLMENC(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMEMPLMENC,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMEMPLMENC(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 49 ? '#1a334c' :
+                                   d > 42  ? '#084594' :
+                                   d > 35  ? '#2171b5' :
+                                   d > 28  ? '#4292c6' :
+                                   d > 21   ? '#6baed6' :
+                                   d > 14   ? '#9ecae1' :
+                                   d > 7   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMEMPLMENC(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMEMPLMENC(feature.properties.EMEMPLMENC)
+                            };
+                        }
+                        
+                        
+                 var legendEMEMPLMENC = L.control({position: 'bottomright'});
+
+                        legendEMEMPLMENC.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [7,14,21,28,35,42,49],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMEMPLMENC(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMEMPLMN12(e) {
+            
+                EMEMPLMN12.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMEMPLMN12(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMEMPLMN12,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMEMPLMN12(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 35 ? '#1a334c' :
+                                   d > 30  ? '#084594' :
+                                   d > 25  ? '#2171b5' :
+                                   d > 20  ? '#4292c6' :
+                                   d > 15   ? '#6baed6' :
+                                   d > 10   ? '#9ecae1' :
+                                   d > 5   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMEMPLMN12(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMEMPLMN12(feature.properties.EMEMPLMN12)
+                            };
+                        }
+                        
+                        
+                 var legendEMEMPLMN12 = L.control({position: 'bottomright'});
+
+                        legendEMEMPLMN12.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [5,10,15,20,25,30,35],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMEMPLMN12(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMEMPLMNUM(e) {
+            
+                EMEMPLMNUM.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMEMPLMNUM(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMEMPLMNUM,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMEMPLMNUM(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 1442 ? '#1a334c' :
+                                   d > 1236  ? '#084594' :
+                                   d > 1030  ? '#2171b5' :
+                                   d > 824  ? '#4292c6' :
+                                   d > 618   ? '#6baed6' :
+                                   d > 412   ? '#9ecae1' :
+                                   d > 206   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMEMPLMNUM(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMEMPLMNUM(feature.properties.EMEMPLMNUM)
+                            };
+                        }
+                        
+                        
+                 var legendEMEMPLMNUM = L.control({position: 'bottomright'});
+
+                        legendEMEMPLMNUM.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [206,412,618,824,1030,1236,1442],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMEMPLMNUM(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMEMPLMTOT(e) {
+            
+                EMEMPLMTOT.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMEMPLMTOT(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMEMPLMTOT,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMEMPLMTOT(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 0 ? '#1a334c' :
+                                   d > 0  ? '#084594' :
+                                   d > 0  ? '#2171b5' :
+                                   d > 0  ? '#4292c6' :
+                                   d > 0   ? '#6baed6' :
+                                   d > 0   ? '#9ecae1' :
+                                   d > 0   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMEMPLMTOT(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMEMPLMTOT(feature.properties.EMEMPLMTOT)
+                            };
+                        }
+                        
+                        
+                 var legendEMEMPLMTOT = L.control({position: 'bottomright'});
+
+                        legendEMEMPLMTOT.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [0,0,0,0,0,0,0],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMEMPLMTOT(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMEMPLMUNW(e) {
+            
+                EMEMPLMUNW.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMEMPLMUNW(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMEMPLMUNW,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMEMPLMUNW(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 1400 ? '#1a334c' :
+                                   d > 1200  ? '#084594' :
+                                   d > 1000  ? '#2171b5' :
+                                   d > 800  ? '#4292c6' :
+                                   d > 600   ? '#6baed6' :
+                                   d > 400   ? '#9ecae1' :
+                                   d > 200   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMEMPLMUNW(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMEMPLMUNW(feature.properties.EMEMPLMUNW)
+                            };
+                        }
+                        
+                        
+                 var legendEMEMPLMUNW = L.control({position: 'bottomright'});
+
+                        legendEMEMPLMUNW.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [200,400,600,800,1000,1200,1400],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMEMPLMUNW(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMEMPLWDKM(e) {
+            
+                EMEMPLWDKM.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMEMPLWDKM(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMEMPLWDKM,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMEMPLWDKM(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 0 ? '#1a334c' :
+                                   d > 0  ? '#084594' :
+                                   d > 0  ? '#2171b5' :
+                                   d > 0  ? '#4292c6' :
+                                   d > 0   ? '#6baed6' :
+                                   d > 0   ? '#9ecae1' :
+                                   d > 0   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMEMPLWDKM(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMEMPLWDKM(feature.properties.EMEMPLWDKM)
+                            };
+                        }
+                        
+                        
+                 var legendEMEMPLWDKM = L.control({position: 'bottomright'});
+
+                        legendEMEMPLWDKM.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [0,0,0,0,0,0,0],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMEMPLWDKM(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMEMPLWEMC(e) {
+            
+                EMEMPLWEMC.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMEMPLWEMC(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMEMPLWEMC,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMEMPLWEMC(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 70 ? '#1a334c' :
+                                   d > 60  ? '#084594' :
+                                   d > 50  ? '#2171b5' :
+                                   d > 40  ? '#4292c6' :
+                                   d > 30   ? '#6baed6' :
+                                   d > 20   ? '#9ecae1' :
+                                   d > 10   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMEMPLWEMC(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMEMPLWEMC(feature.properties.EMEMPLWEMC)
+                            };
+                        }
+                        
+                        
+                 var legendEMEMPLWEMC = L.control({position: 'bottomright'});
+
+                        legendEMEMPLWEMC.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [10,20,30,40,50,60,70],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMEMPLWEMC(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMEMPLWENC(e) {
+            
+                EMEMPLWENC.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMEMPLWENC(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMEMPLWENC,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMEMPLWENC(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 14 ? '#1a334c' :
+                                   d > 12  ? '#084594' :
+                                   d > 10  ? '#2171b5' :
+                                   d > 8  ? '#4292c6' :
+                                   d > 6   ? '#6baed6' :
+                                   d > 4   ? '#9ecae1' :
+                                   d > 2   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMEMPLWENC(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMEMPLWENC(feature.properties.EMEMPLWENC)
+                            };
+                        }
+                        
+                        
+                 var legendEMEMPLWENC = L.control({position: 'bottomright'});
+
+                        legendEMEMPLWENC.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [2,4,6,8,10,12,14],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMEMPLWENC(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMEMPLWN12(e) {
+            
+                EMEMPLWN12.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMEMPLWN12(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMEMPLWN12,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMEMPLWN12(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 70 ? '#1a334c' :
+                                   d > 60  ? '#084594' :
+                                   d > 50  ? '#2171b5' :
+                                   d > 40  ? '#4292c6' :
+                                   d > 30   ? '#6baed6' :
+                                   d > 20   ? '#9ecae1' :
+                                   d > 10   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMEMPLWN12(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMEMPLWN12(feature.properties.EMEMPLWN12)
+                            };
+                        }
+                        
+                        
+                 var legendEMEMPLWN12 = L.control({position: 'bottomright'});
+
+                        legendEMEMPLWN12.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [10,20,30,40,50,60,70],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMEMPLWN12(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMEMPLWNUM(e) {
+            
+                EMEMPLWNUM.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMEMPLWNUM(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMEMPLWNUM,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMEMPLWNUM(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 5173 ? '#1a334c' :
+                                   d > 4434  ? '#084594' :
+                                   d > 3695  ? '#2171b5' :
+                                   d > 2956  ? '#4292c6' :
+                                   d > 2217   ? '#6baed6' :
+                                   d > 1478   ? '#9ecae1' :
+                                   d > 739   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMEMPLWNUM(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMEMPLWNUM(feature.properties.EMEMPLWNUM)
+                            };
+                        }
+                        
+                        
+                 var legendEMEMPLWNUM = L.control({position: 'bottomright'});
+
+                        legendEMEMPLWNUM.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [739,1478,2217,2956,3695,4434,5173],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMEMPLWNUM(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMEMPLWTOT(e) {
+            
+                EMEMPLWTOT.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMEMPLWTOT(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMEMPLWTOT,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMEMPLWTOT(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 0 ? '#1a334c' :
+                                   d > 0  ? '#084594' :
+                                   d > 0  ? '#2171b5' :
+                                   d > 0  ? '#4292c6' :
+                                   d > 0   ? '#6baed6' :
+                                   d > 0   ? '#9ecae1' :
+                                   d > 0   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMEMPLWTOT(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMEMPLWTOT(feature.properties.EMEMPLWTOT)
+                            };
+                        }
+                        
+                        
+                 var legendEMEMPLWTOT = L.control({position: 'bottomright'});
+
+                        legendEMEMPLWTOT.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [0,0,0,0,0,0,0],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMEMPLWTOT(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMEMPLWUNW(e) {
+            
+                EMEMPLWUNW.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMEMPLWUNW(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMEMPLWUNW,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMEMPLWUNW(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 5019 ? '#1a334c' :
+                                   d > 4302  ? '#084594' :
+                                   d > 3585  ? '#2171b5' :
+                                   d > 2868  ? '#4292c6' :
+                                   d > 2151   ? '#6baed6' :
+                                   d > 1434   ? '#9ecae1' :
+                                   d > 717   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMEMPLWUNW(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMEMPLWUNW(feature.properties.EMEMPLWUNW)
+                            };
+                        }
+                        
+                        
+                 var legendEMEMPLWUNW = L.control({position: 'bottomright'});
+
+                        legendEMEMPLWUNW.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [717,1434,2151,2868,3585,4302,5019],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMEMPLWUNW(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMOCCPWCLR(e) {
+            
+                EMOCCPWCLR.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMOCCPWCLR(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMOCCPWCLR,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMOCCPWCLR(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 7 ? '#1a334c' :
+                                   d > 6  ? '#084594' :
+                                   d > 5  ? '#2171b5' :
+                                   d > 4  ? '#4292c6' :
+                                   d > 3   ? '#6baed6' :
+                                   d > 2   ? '#9ecae1' :
+                                   d > 1   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMOCCPWCLR(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMOCCPWCLR(feature.properties.EMOCCPWCLR)
+                            };
+                        }
+                        
+                        
+                 var legendEMOCCPWCLR = L.control({position: 'bottomright'});
+
+                        legendEMOCCPWCLR.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [1,2,3,4,5,6,7],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMOCCPWCLR(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMOCCPWDOM(e) {
+            
+                EMOCCPWDOM.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMOCCPWDOM(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMOCCPWDOM,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMOCCPWDOM(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 14 ? '#1a334c' :
+                                   d > 12  ? '#084594' :
+                                   d > 10  ? '#2171b5' :
+                                   d > 8  ? '#4292c6' :
+                                   d > 6   ? '#6baed6' :
+                                   d > 4   ? '#9ecae1' :
+                                   d > 2   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMOCCPWDOM(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMOCCPWDOM(feature.properties.EMOCCPWDOM)
+                            };
+                        }
+                        
+                        
+                 var legendEMOCCPWDOM = L.control({position: 'bottomright'});
+
+                        legendEMOCCPWDOM.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [2,4,6,8,10,12,14],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMOCCPWDOM(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMOCCPWMNS(e) {
+            
+                EMOCCPWMNS.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMOCCPWMNS(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMOCCPWMNS,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMOCCPWMNS(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 42 ? '#1a334c' :
+                                   d > 36  ? '#084594' :
+                                   d > 30  ? '#2171b5' :
+                                   d > 24  ? '#4292c6' :
+                                   d > 18   ? '#6baed6' :
+                                   d > 12   ? '#9ecae1' :
+                                   d > 6   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMOCCPWMNS(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMOCCPWMNS(feature.properties.EMOCCPWMNS)
+                            };
+                        }
+                        
+                        
+                 var legendEMOCCPWMNS = L.control({position: 'bottomright'});
+
+                        legendEMOCCPWMNS.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [6,12,18,24,30,36,42],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMOCCPWMNS(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMOCCPWMNU(e) {
+            
+                EMOCCPWMNU.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMOCCPWMNU(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMOCCPWMNU,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMOCCPWMNU(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 14 ? '#1a334c' :
+                                   d > 12  ? '#084594' :
+                                   d > 10  ? '#2171b5' :
+                                   d > 8  ? '#4292c6' :
+                                   d > 6   ? '#6baed6' :
+                                   d > 4   ? '#9ecae1' :
+                                   d > 2   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMOCCPWMNU(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMOCCPWMNU(feature.properties.EMOCCPWMNU)
+                            };
+                        }
+                        
+                        
+                 var legendEMOCCPWMNU = L.control({position: 'bottomright'});
+
+                        legendEMOCCPWMNU.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [2,4,6,8,10,12,14],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMOCCPWMNU(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMOCCPWPRO(e) {
+            
+                EMOCCPWPRO.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMOCCPWPRO(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMOCCPWPRO,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMOCCPWPRO(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 7 ? '#1a334c' :
+                                   d > 6  ? '#084594' :
+                                   d > 5  ? '#2171b5' :
+                                   d > 4  ? '#4292c6' :
+                                   d > 3   ? '#6baed6' :
+                                   d > 2   ? '#9ecae1' :
+                                   d > 1   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMOCCPWPRO(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMOCCPWPRO(feature.properties.EMOCCPWPRO)
+                            };
+                        }
+                        
+                        
+                 var legendEMOCCPWPRO = L.control({position: 'bottomright'});
+
+                        legendEMOCCPWPRO.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [1,2,3,4,5,6,7],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMOCCPWPRO(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightEMOCCPWSAL(e) {
+            
+                EMOCCPWSAL.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureEMOCCPWSAL(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightEMOCCPWSAL,
+                    click: zoomToFeature
+                });
+            }
+                function getColorEMOCCPWSAL(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 70 ? '#1a334c' :
+                                   d > 60  ? '#084594' :
+                                   d > 50  ? '#2171b5' :
+                                   d > 40  ? '#4292c6' :
+                                   d > 30   ? '#6baed6' :
+                                   d > 20   ? '#9ecae1' :
+                                   d > 10   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleEMOCCPWSAL(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorEMOCCPWSAL(feature.properties.EMOCCPWSAL)
+                            };
+                        }
+                        
+                        
+                 var legendEMOCCPWSAL = L.control({position: 'bottomright'});
+
+                        legendEMOCCPWSAL.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [10,20,30,40,50,60,70],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorEMOCCPWSAL(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightFEFRTRWTFR(e) {
+            
+                FEFRTRWTFR.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureFEFRTRWTFR(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightFEFRTRWTFR,
+                    click: zoomToFeature
+                });
+            }
+                function getColorFEFRTRWTFR(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 7 ? '#1a334c' :
+                                   d > 6  ? '#084594' :
+                                   d > 5  ? '#2171b5' :
+                                   d > 4  ? '#4292c6' :
+                                   d > 3   ? '#6baed6' :
+                                   d > 2   ? '#9ecae1' :
+                                   d > 1   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleFEFRTRWTFR(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorFEFRTRWTFR(feature.properties.FEFRTRWTFR)
+                            };
+                        }
+                        
+                        
+                 var legendFEFRTRWTFR = L.control({position: 'bottomright'});
+
+                        legendFEFRTRWTFR.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [1,2,3,4,5,6,7],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorFEFRTRWTFR(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightFPCUSMWANY(e) {
+            
+                FPCUSMWANY.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureFPCUSMWANY(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightFPCUSMWANY,
+                    click: zoomToFeature
+                });
+            }
+                function getColorFPCUSMWANY(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 28 ? '#1a334c' :
+                                   d > 24  ? '#084594' :
+                                   d > 20  ? '#2171b5' :
+                                   d > 16  ? '#4292c6' :
+                                   d > 12   ? '#6baed6' :
+                                   d > 8   ? '#9ecae1' :
+                                   d > 4   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleFPCUSMWANY(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorFPCUSMWANY(feature.properties.FPCUSMWANY)
+                            };
+                        }
+                        
+                        
+                 var legendFPCUSMWANY = L.control({position: 'bottomright'});
+
+                        legendFPCUSMWANY.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [4,8,12,16,20,24,28],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorFPCUSMWANY(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightFPCUSMWMOD(e) {
+            
+                FPCUSMWMOD.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureFPCUSMWMOD(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightFPCUSMWMOD,
+                    click: zoomToFeature
+                });
+            }
+                function getColorFPCUSMWMOD(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 14 ? '#1a334c' :
+                                   d > 12  ? '#084594' :
+                                   d > 10  ? '#2171b5' :
+                                   d > 8  ? '#4292c6' :
+                                   d > 6   ? '#6baed6' :
+                                   d > 4   ? '#9ecae1' :
+                                   d > 2   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleFPCUSMWMOD(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorFPCUSMWMOD(feature.properties.FPCUSMWMOD)
+                            };
+                        }
+                        
+                        
+                 var legendFPCUSMWMOD = L.control({position: 'bottomright'});
+
+                        legendFPCUSMWMOD.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [2,4,6,8,10,12,14],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorFPCUSMWMOD(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightFPNADMWPDM(e) {
+            
+                FPNADMWPDM.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureFPNADMWPDM(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightFPNADMWPDM,
+                    click: zoomToFeature
+                });
+            }
+                function getColorFPNADMWPDM(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 42 ? '#1a334c' :
+                                   d > 36  ? '#084594' :
+                                   d > 30  ? '#2171b5' :
+                                   d > 24  ? '#4292c6' :
+                                   d > 18   ? '#6baed6' :
+                                   d > 12   ? '#9ecae1' :
+                                   d > 6   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleFPNADMWPDM(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorFPNADMWPDM(feature.properties.FPNADMWPDM)
+                            };
+                        }
+                        
+                        
+                 var legendFPNADMWPDM = L.control({position: 'bottomright'});
+
+                        legendFPNADMWPDM.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [6,12,18,24,30,36,42],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorFPNADMWPDM(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightFPNADMWUNT(e) {
+            
+                FPNADMWUNT.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureFPNADMWUNT(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightFPNADMWUNT,
+                    click: zoomToFeature
+                });
+            }
+                function getColorFPNADMWUNT(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 28 ? '#1a334c' :
+                                   d > 24  ? '#084594' :
+                                   d > 20  ? '#2171b5' :
+                                   d > 16  ? '#4292c6' :
+                                   d > 12   ? '#6baed6' :
+                                   d > 8   ? '#9ecae1' :
+                                   d > 4   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleFPNADMWUNT(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorFPNADMWUNT(feature.properties.FPNADMWUNT)
+                            };
+                        }
+                        
+                        
+                 var legendFPNADMWUNT = L.control({position: 'bottomright'});
+
+                        legendFPNADMWUNT.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [4,8,12,16,20,24,28],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorFPNADMWUNT(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightMAAAFMWM2B(e) {
+            
+                MAAAFMWM2B.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureMAAAFMWM2B(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightMAAAFMWM2B,
+                    click: zoomToFeature
+                });
+            }
+                function getColorMAAAFMWM2B(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 0 ? '#1a334c' :
+                                   d > 0  ? '#084594' :
+                                   d > 0  ? '#2171b5' :
+                                   d > 0  ? '#4292c6' :
+                                   d > 0   ? '#6baed6' :
+                                   d > 0   ? '#9ecae1' :
+                                   d > 0   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleMAAAFMWM2B(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorMAAAFMWM2B(feature.properties.MAAAFMWM2B)
+                            };
+                        }
+                        
+                        
+                 var legendMAAAFMWM2B = L.control({position: 'bottomright'});
+
+                        legendMAAAFMWM2B.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [0,0,0,0,0,0,0],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorMAAAFMWM2B(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+                    function resetHighlightSXAAFSWM2B(e) {
+            
+                SXAAFSWM2B.resetStyle(e.target);
+                info.update();
+            }
+            
+            function onEachFeatureSXAAFSWM2B(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlightSXAAFSWM2B,
+                    click: zoomToFeature
+                });
+            }
+                function getColorSXAAFSWM2B(d) {
+                            return d==9999 ? '#EEEEEE' :
+                                   d > 0 ? '#1a334c' :
+                                   d > 0  ? '#084594' :
+                                   d > 0  ? '#2171b5' :
+                                   d > 0  ? '#4292c6' :
+                                   d > 0   ? '#6baed6' :
+                                   d > 0   ? '#9ecae1' :
+                                   d > 0   ? '#c6dbef' :
+                                              '#eff3ff';
+                        }
+
+                        function styleSXAAFSWM2B(feature) {
+                            return {
+                                weight: 2,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                                fillColor: getColorSXAAFSWM2B(feature.properties.SXAAFSWM2B)
+                            };
+                        }
+                        
+                        
+                 var legendSXAAFSWM2B = L.control({position: 'bottomright'});
+
+                        legendSXAAFSWM2B.onAdd = function (map) {
+
+                            var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [0,0,0,0,0,0,0],
+                                labels = [],
+                                from, to;
+
+                            for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                    '<i style="background:' + getColorSXAAFSWM2B(from + 1) + '"></i> ' +
+                                    from + (to ? '&ndash;' + to : '+'));
+                            }
+
+                            div.innerHTML = labels.join('<br>');
+                            return div;
+                        };
+                        
+                        
+
+            function highlightFeature(e) {
+                var layer = e.target;
+
+                layer.setStyle({
+                    weight: 5,
+                    color: '#666',
+                    dashArray: '',
+                    fillOpacity: 0.7
+                });
+
+                if (!L.Browser.ie && !L.Browser.opera) {
+                    layer.bringToFront();
+                }
+
+                info.update(layer.feature.properties);
+            }
+
+
+
+
+            function zoomToFeature(e) {
+                map.fitBounds(e.target.getBounds());
+            }
+
+       
+var baseMaps = {"Probability of dying before the first birthday (in the ten years preceding the survey [five years for Total]) per 1,000 live births":CMECMRCIMR,"Probability of dying before the fifth birthday (in the ten years preceding the survey [five years for Total]) per 1,000 live births":CMECMRCU5M,"Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months":EMEMPLMDKM,"Percentage of men who worked in the 12 months preceding the survey and are working currently":EMEMPLMEMC,"Percentage of men who worked in the 12 months preceding the survey, but are not working currently":EMEMPLMENC,"Percentage of men who did no work in the 12 months preceding the survey":EMEMPLMN12,"Number of men aged 15-49(54,59)":EMEMPLMNUM,"Percentage of men: Total":EMEMPLMTOT,"Number of men aged 15-49(54,59) (unweighted)":EMEMPLMUNW,"Percentage of women with 'don't know' or missing information on whether they worked in the last 12 months":EMEMPLWDKM,"Percentage of women who worked in the 12 months preceding the survey and are working currently":EMEMPLWEMC,"Percentage of women who worked in the 12 months preceding the survey, but are not working currently":EMEMPLWENC,"Percentage of women who did no work in the 12 months preceding the survey":EMEMPLWN12,"Number of women aged 15-49":EMEMPLWNUM,"Percentage of women: Total":EMEMPLWTOT,"Number of women aged 15-49 (unweighted)":EMEMPLWUNW,"Percentage of women employed in the 12 months before the survey whose occupation is clerical":EMOCCPWCLR,"Percentage of women employed in the 12 months before the survey whose occupation is household & domestic":EMOCCPWDOM,"Percentage of women employed in the 12 months before the survey whose occupation is skilled manual":EMOCCPWMNS,"Percentage of women employed in the 12 months before the survey whose occupation is unskilled manual":EMOCCPWMNU,"Percentage of women employed in the 12 months before the survey whose occupation is professional, technical, managerial":EMOCCPWPRO,"Percentage of women employed in the 12 months before the survey whose occupation is sales, services":EMOCCPWSAL,"Total fertility rate for the three years preceding the survey for age group 15-49 expressed per woman":FEFRTRWTFR,"Percentage of currently married or in union women currently using any method of contraception":FPCUSMWANY,"Percentage of currently married or in union women currently using any modern method of contraception":FPCUSMWMOD,"Percentage of demand for family planning satisfied by modern methods is calculated as the number of currently married women using modern methods of family planning divided by the number of currently married women with demand for family planning (either with unmet need or currently using any family planning)":FPNADMWPDM,"Percentage of currently married or in union women with an unmet need for family planning":FPNADMWUNT,"Median age at first marriage or union in years among women age 25-49":MAAAFMWM2B,"Median age at first sexual intercourse in years among women age 25-49":SXAAFSWM2B}; var dict_Maps = {"Probability of dying before the first birthday (in the ten years preceding the survey [five years for Total]) per 1,000 live births":"CMECMRCIMR","Probability of dying before the fifth birthday (in the ten years preceding the survey [five years for Total]) per 1,000 live births":"CMECMRCU5M","Percentage of men with 'don't know' or missing information on whether they worked in the last 12 months":"EMEMPLMDKM","Percentage of men who worked in the 12 months preceding the survey and are working currently":"EMEMPLMEMC","Percentage of men who worked in the 12 months preceding the survey, but are not working currently":"EMEMPLMENC","Percentage of men who did no work in the 12 months preceding the survey":"EMEMPLMN12","Number of men aged 15-49(54,59)":"EMEMPLMNUM","Percentage of men: Total":"EMEMPLMTOT","Number of men aged 15-49(54,59) (unweighted)":"EMEMPLMUNW","Percentage of women with 'don't know' or missing information on whether they worked in the last 12 months":"EMEMPLWDKM","Percentage of women who worked in the 12 months preceding the survey and are working currently":"EMEMPLWEMC","Percentage of women who worked in the 12 months preceding the survey, but are not working currently":"EMEMPLWENC","Percentage of women who did no work in the 12 months preceding the survey":"EMEMPLWN12","Number of women aged 15-49":"EMEMPLWNUM","Percentage of women: Total":"EMEMPLWTOT","Number of women aged 15-49 (unweighted)":"EMEMPLWUNW","Percentage of women employed in the 12 months before the survey whose occupation is clerical":"EMOCCPWCLR","Percentage of women employed in the 12 months before the survey whose occupation is household & domestic":"EMOCCPWDOM","Percentage of women employed in the 12 months before the survey whose occupation is skilled manual":"EMOCCPWMNS","Percentage of women employed in the 12 months before the survey whose occupation is unskilled manual":"EMOCCPWMNU","Percentage of women employed in the 12 months before the survey whose occupation is professional, technical, managerial":"EMOCCPWPRO","Percentage of women employed in the 12 months before the survey whose occupation is sales, services":"EMOCCPWSAL","Total fertility rate for the three years preceding the survey for age group 15-49 expressed per woman":"FEFRTRWTFR","Percentage of currently married or in union women currently using any method of contraception":"FPCUSMWANY","Percentage of currently married or in union women currently using any modern method of contraception":"FPCUSMWMOD","Percentage of demand for family planning satisfied by modern methods is calculated as the number of currently married women using modern methods of family planning divided by the number of currently married women with demand for family planning (either with unmet need or currently using any family planning)":"FPNADMWPDM","Percentage of currently married or in union women with an unmet need for family planning":"FPNADMWUNT","Median age at first marriage or union in years among women age 25-49":"MAAAFMWM2B","Median age at first sexual intercourse in years among women age 25-49":"SXAAFSWM2B"};
+var overlayMaps ={}
+    
+    L.control.layers(baseMaps, overlayMaps, {
+    collapsed:true,
+    position:'bottomleft'
+}).addTo(map);
+legendCMECMRCIMR.addTo(map);
+currentLegend = legendCMECMRCIMR;
+var doc = 'Probability of dying before the first birthday (in the ten years preceding the survey [five years for Total]) per 1,000 live births';
+var indicator = 'CMECMRCIMR';
+
+
+
+
+
+        map.on('baselayerchange', function (eventLayer) {
+        doc = eventLayer.name;
+        indicator = dict_Maps[eventLayer.name];
+        if (eventLayer.name === 'Probability of dying before the first birthday (in the ten years preceding the survey [five years for Total]) per 1,000 live births') {
+        map.removeControl(currentLegend );
+        currentLegend = legendCMECMRCIMR;
+        legendCMECMRCIMR.addTo(map);
+        }
+         
+            else if  (eventLayer.name === 'Probability of dying before the fifth birthday (in the ten years preceding the survey [five years for Total]) per 1,000 live births') {
+        map.removeControl(currentLegend );
+        currentLegend = legendCMECMRCU5M;
+        legendCMECMRCU5M.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of men with dont know or missing information on whether they worked in the last 12 months') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMEMPLMDKM;
+        legendEMEMPLMDKM.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of men who worked in the 12 months preceding the survey and are working currently') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMEMPLMEMC;
+        legendEMEMPLMEMC.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of men who worked in the 12 months preceding the survey, but are not working currently') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMEMPLMENC;
+        legendEMEMPLMENC.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of men who did no work in the 12 months preceding the survey') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMEMPLMN12;
+        legendEMEMPLMN12.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Number of men aged 15-49(54,59)') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMEMPLMNUM;
+        legendEMEMPLMNUM.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of men: Total') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMEMPLMTOT;
+        legendEMEMPLMTOT.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Number of men aged 15-49(54,59) (unweighted)') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMEMPLMUNW;
+        legendEMEMPLMUNW.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of women with dont know or missing information on whether they worked in the last 12 months') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMEMPLWDKM;
+        legendEMEMPLWDKM.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of women who worked in the 12 months preceding the survey and are working currently') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMEMPLWEMC;
+        legendEMEMPLWEMC.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of women who worked in the 12 months preceding the survey, but are not working currently') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMEMPLWENC;
+        legendEMEMPLWENC.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of women who did no work in the 12 months preceding the survey') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMEMPLWN12;
+        legendEMEMPLWN12.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Number of women aged 15-49') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMEMPLWNUM;
+        legendEMEMPLWNUM.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of women: Total') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMEMPLWTOT;
+        legendEMEMPLWTOT.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Number of women aged 15-49 (unweighted)') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMEMPLWUNW;
+        legendEMEMPLWUNW.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of women employed in the 12 months before the survey whose occupation is clerical') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMOCCPWCLR;
+        legendEMOCCPWCLR.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of women employed in the 12 months before the survey whose occupation is household & domestic') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMOCCPWDOM;
+        legendEMOCCPWDOM.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of women employed in the 12 months before the survey whose occupation is skilled manual') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMOCCPWMNS;
+        legendEMOCCPWMNS.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of women employed in the 12 months before the survey whose occupation is unskilled manual') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMOCCPWMNU;
+        legendEMOCCPWMNU.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of women employed in the 12 months before the survey whose occupation is professional, technical, managerial') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMOCCPWPRO;
+        legendEMOCCPWPRO.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of women employed in the 12 months before the survey whose occupation is sales, services') {
+        map.removeControl(currentLegend );
+        currentLegend = legendEMOCCPWSAL;
+        legendEMOCCPWSAL.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Total fertility rate for the three years preceding the survey for age group 15-49 expressed per woman') {
+        map.removeControl(currentLegend );
+        currentLegend = legendFEFRTRWTFR;
+        legendFEFRTRWTFR.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of currently married or in union women currently using any method of contraception') {
+        map.removeControl(currentLegend );
+        currentLegend = legendFPCUSMWANY;
+        legendFPCUSMWANY.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of currently married or in union women currently using any modern method of contraception') {
+        map.removeControl(currentLegend );
+        currentLegend = legendFPCUSMWMOD;
+        legendFPCUSMWMOD.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of demand for family planning satisfied by modern methods is calculated as the number of currently married women using modern methods of family planning divided by the number of currently married women with demand for family planning (either with unmet need or currently using any family planning)') {
+        map.removeControl(currentLegend );
+        currentLegend = legendFPNADMWPDM;
+        legendFPNADMWPDM.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Percentage of currently married or in union women with an unmet need for family planning') {
+        map.removeControl(currentLegend );
+        currentLegend = legendFPNADMWUNT;
+        legendFPNADMWUNT.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Median age at first marriage or union in years among women age 25-49') {
+        map.removeControl(currentLegend );
+        currentLegend = legendMAAAFMWM2B;
+        legendMAAAFMWM2B.addTo(map);
+    } 
+            else if  (eventLayer.name === 'Median age at first sexual intercourse in years among women age 25-49') {
+        map.removeControl(currentLegend );
+        currentLegend = legendSXAAFSWM2B;
+        legendSXAAFSWM2B.addTo(map);
+    }})
+                </script>
+            </body>
+            </html> 

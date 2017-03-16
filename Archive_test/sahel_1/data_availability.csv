@@ -1,0 +1,6 @@
+Country,DHScode,FIPScode,ISOcode,SurveyYear,SurveyType,CMECMRCIMR,CMECMRCU5M
+Burkina Faso,BF,UV,,2010,DHS,Yes,Yes
+Mali,ML,ML,,2012,DHS,Yes,Yes
+Mauritania,MR,MR,,2000,DHS,Yes,Yes
+Niger,NI,NG,,2012,DHS,Yes,Yes
+Chad,TD,CD,,2004,DHS,Yes,Yes

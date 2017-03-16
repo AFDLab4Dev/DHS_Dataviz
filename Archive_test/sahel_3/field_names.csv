@@ -1,0 +1,30 @@
+SDRID,Definition,Data Restriction,DHSID,Alias
+SVHRESHABS,Percentage of households absent for an extended period of time,,SV_HRES_H_ABS,Sample implementation: Households absent
+SVHRESHDES,Percentage of households for which the dwelling was destroyed,,SV_HRES_H_DES,Sample implementation: Households dwelling destroyed
+SVHRESHDNF,Percentage of households for which the dwelling was not found,,SV_HRES_H_DNF,Sample implementation: Households dwelling not found
+SVHRESHINN,Number of households interviewed,,SV_HRES_H_INN,Number of households interviewed
+SVHRESHINT,Percentage of household interviews completed,,SV_HRES_H_INT,Sample implementation: Households completed
+SVHRESHNOR,Percentage of households with no competent respondent at home,,SV_HRES_H_NOR,Sample implementation: Households no competent respondent
+SVHRESHOCC,Number of households found,,SV_HRES_H_OCC,Number of households found
+SVHRESHOTH,Percentage of household interviews not completed for other reasons,,SV_HRES_H_OTH,Sample implementation: Households other
+SVHRESHPOS,Percentage of household interviews postponed,,SV_HRES_H_POS,Sample implementation: Households postponed
+SVHRESHREF,Percentage of households that refused to be interviewed,,SV_HRES_H_REF,Sample implementation: Households refused
+SVHRESHRES,Household response rate (=completed/(completed+postponed+refused+dwelling not found),,SV_HRES_H_RES,Sample implementation: Households response rate
+SVHRESHSEL,Total number of households selected,,SV_HRES_H_SEL,Sample implementation: Households number
+SVHRESHTOT,Percentage of households: Total,,SV_HRES_H_TOT,Sample implementation: Households total percent
+SVHRESHVAC,Percentage of households for which the dwelling was vacant,,SV_HRES_H_VAC,Sample implementation: Households dwelling vacant
+SVINTVHYRI,Median date of household interview in years,,SV_INTV_H_YRI,Median date of interview
+SVINTVMMED,Median duration of men's interview in minutes,,SV_INTV_M_MED,Median duration of men's interview
+SVINTVMMNI,Mean duration of men's interview in minutes,,SV_INTV_M_MNI,Mean duration of men's interview
+SVINTVMNUM,Number of men interviewed in one visit with complete interview start and stop time [Men],,SV_INTV_M_NUM,Number of men interviewed in one visit with complete interview start and stop time [Men]
+SVINTVWMED,Median duration of women's interview in minutes,,SV_INTV_W_MED,Median duration of women's interview
+SVINTVWMNI,Mean duration of women's interview in minutes,,SV_INTV_W_MNI,Mean duration of women's interview
+SVINTVWNUM,Number of women interviewed in one visit with complete interview start and stop time,,SV_INTV_W_NUM,Number of women interviewed in one visit with complete interview start and stop time
+SVINTVWUNW,Number of women interviewed in one visit with complete interview start and stop time (unweighted),,SV_INTV_W_UNW,Number of women interviewed in one visit with complete interview start and stop time (unweighted)
+SVRESIWINC,Percentage of eligible women who were incapacitated,,SV_RESI_W_INC,Sample implementation: Eligible women incapacitated
+SVRESIWINT,Percentage of eligible women interviews completed,,SV_RESI_W_INT,Sample implementation: Eligible women completed
+SVRESIWNAH,Percentage of eligible women not at home,,SV_RESI_W_NAH,Sample implementation: Eligible women not at home
+SVRESIWOTH,Percentage of eligible women for whom interviews were not completed for other reasons,,SV_RESI_W_OTH,Sample implementation: Eligible women other
+SVRESIWPOS,Percentage of eligible women interviews postponed,,SV_RESI_W_POS,Sample implementation: Eligible women postponed
+SVRESIWPRT,Percentage of eligible women interviews partly completed,,SV_RESI_W_PRT,Sample implementation: Eligible women partly completed
+SVRESIWREF,Percentage of eligible women who refused to be interviewed,,SV_RESI_W_REF,Sample implementation: Eligible women refused
